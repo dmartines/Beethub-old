@@ -1,0 +1,20 @@
+body {
+    background-color: #ffca60;
+}
+.navbar-default, .navbar-brand, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #33004a;
+    color: #ffca60 !important;
+}
+
+.navbar-nav > li > a {
+    background-color: #33004a;
+    color: #ffca60 !important;
+}
+
+#newOrganization, #successOrganization, #errorOrganization, #missingName, #missingAddress, #missingCity {
+    display: none;
+}
+
+#btnSaveCompany {
+    float: right;
+}

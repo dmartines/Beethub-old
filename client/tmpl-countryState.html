@@ -1,0 +1,15 @@
+<template name="countryState">
+   
+    <select type="text" class="form-control" name="orgState" id="orgState" placeholder="State">
+        {{#each stateList}}
+            <option value="{{value}}">{{name}}</option>
+        {{/each}}
+    </select>
+    <br>
+    <select type="text" class="form-control" name="orgCountry" id="orgCountry" placeholder="Country">
+        {{#each countryList}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+
+</template>
