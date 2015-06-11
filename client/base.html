@@ -1,8 +1,12 @@
 <template name="base">
-  <header>
-    {{> header}}
-  </header>
+    <header>
+        <title>Beethub</title>
+        {{> header}}
+    </header>
 
-  {{> coffeeAlerts}}
-  {{> yield}}
+    {{> coffeeAlerts}}
+
+    <div class="container">
+        {{> yield}}
+    </div>
 </template>

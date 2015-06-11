@@ -1,13 +1,13 @@
 body {
-    background-color: #ffca60;
+    background-color: #C9BCB9;
 }
 .navbar-default, .navbar-brand, .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #33004a;
+    background-color: #3F1600;
     color: #ffca60 !important;
 }
 
 .navbar-nav > li > a {
-    background-color: #33004a;
+    background-color: #3F1600;
     color: #ffca60 !important;
 }
 

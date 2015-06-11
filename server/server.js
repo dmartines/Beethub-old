@@ -7,6 +7,7 @@ Meteor.publish('org', function() {
     }
     return Org.find({_id: {$in: orgs}});
 });
+
 Meteor.publish('orgusers', function() {
     return OrgUsers.find({userId:this.userId}); 
 });
