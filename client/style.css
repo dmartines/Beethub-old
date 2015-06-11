@@ -12,7 +12,6 @@ body {
 }
 
 #newOrganization, #successOrganization, #errorOrganization, #missingName, #missingAddress, #missingCity {
-    display: none;
 }
 
 #btnSaveCompany {

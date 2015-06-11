@@ -8,7 +8,12 @@ Meteor.publish('org', function() {
     return Org.find({_id: {$in: orgs}});
 });
 Meteor.publish('orgusers', function() {
-    return OrgUsers.find({userId:this.userId}); 
+    return OrgUsers.find({userId:this.userId});
+});
+
+Meteor.publish('timesheetCount', function() {
+  
+  return Timesheets.find({$in: })
 });
 
 Meteor.methods({
@@ -27,13 +32,13 @@ Meteor.methods({
         });
         if (!orgId)
             throw new Meteor.Error(401,'Organization could not be created');
-    
+
         var userAssigned = OrgUsers.insert({
             orgId: orgId,
             userId: this.userId,
             role: 'admin'
         });
-        if (!userAssigned) 
+        if (!userAssigned)
             throw new Meteor.Error(401,'User not assigned to organization. Please contact Administrator');
     }
 });

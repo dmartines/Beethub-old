@@ -76,6 +76,8 @@ Template.functions.events({
                 console.log(err);
                 $('#errorOrganization').modal('show');
             } else {
+                CoffeeAlerts.success('Your organization has been added');
+                Router.go('/my/success/url');
                 $('#successOrganization').modal('show');
             }
         });
@@ -94,3 +96,7 @@ function validateAll() {
         $('#btnSaveCompany').prop("disabled",false);
     }
 }
+
+Template.timesheet.onRendered(function() {
+  Meteor.users.update(Meteor.userId(), {"profile.viewedTimesheets": {$push: Router.current().params._id}})
+});
