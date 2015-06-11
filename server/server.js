@@ -13,6 +13,10 @@ Meteor.publish('orgusers', function() {
 
 Meteor.methods({
     'insertOrganization': function(name, desc, addr1, addr2, city, st, country, phone) {
+        if (name == '') {
+            Coffee.success("Missing name");
+            Router.go('newOrganization');
+        }
         var orgId = Org.insert({
             name: name,
             description: desc,

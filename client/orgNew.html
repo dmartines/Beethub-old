@@ -1,0 +1,67 @@
+<template name="newOrganization"> 
+
+    <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+                {{> quickForm collection="Org" id="insertOrgForm" type="insert"}}
+           </div>
+       </div>
+    </div>   
+    
+<!--
+    <div class="row" id="newOrganization">
+        <div class="col-sm-12"><p>Fields marked with * are required</p></div>
+        <br>
+        <form class="form-horizontal" >
+            <div class="form-group has-feedback" id="nameControl">
+                <label class="control-label col-sm-3" for="orgName">Organization name*</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="orgName" placeholder="Enter organization name">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" id="missingName"></span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="control-label col-sm-3" for="orgDescription">Description</label>
+                <div class="col-sm-9">
+                    <textarea rows="6" class="form-control" id="orgDescription" placeholder="Enter a description about your organization"></textarea>
+                </div>
+            </div>
+            <div class="form-group has-feedback" id="addressControl">
+                <label class="control-label col-sm-3" for="orgAddress">Address*</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="orgAddress1" placeholder="Address 1">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" id="missingAddress"></span>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="control-label col-sm-3" for="orgAddress2">&nbsp;</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="orgAddress2" placeholder="Address 2">
+                </div>
+            </div>
+            <div class="form-group has-feedback" id="cityControl">
+                <label class="control-label col-sm-3" for="orgAddress">&nbsp;</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="orgCity" placeholder="City">
+                    <span class="glyphicon glyphicon-remove form-control-feedback" id="missingCity"></span>
+                </div>
+            </div>
+            <div class="form-group has-feedback" id="stateControl">
+                <label class="control-label col-sm-3" for="orgAddress">&nbsp;</label>
+                <div class="col-sm-9">
+                    {{> countryState}}
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="control-label col-sm-3" for="orgPhone">Phone</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="orgPhone" placeholder="XXX-XXX-XXXX"><br>
+                </div>
+            </div>
+            <button id="btnSaveCompany" class="btn btn-disabled" disabled>Save</button>
+        </form>
+    </div>
+-->
+    
+</template>
+

@@ -7,5 +7,12 @@
 meteor-platform
 iron:router
 twbs:bootstrap
-accounts-password
 ian:accounts-ui-bootstrap-3
+aldeed:collection2
+matb33:collection-hooks
+useraccounts:core
+useraccounts:bootstrap
+accounts-password
+accounts-facebook
+pfafman:coffee-alerts
+aldeed:autoform
