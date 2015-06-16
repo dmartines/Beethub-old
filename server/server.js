@@ -12,6 +12,15 @@ Meteor.publish('orgusers', function() {
     return OrgUsers.find({userId:this.userId}); 
 });
 
+Meteor.publish('adminTimesheets', function() {
+    var orgUsers = OrgUsers.find({userId:this.userId}, {orgId: 1, role: 1}).fetch();
+    var orgs = [''];
+    for (var org in orgUsers) {
+        orgs.push(orgUsers[org].orgId);
+    }
+    return Timesheet.find({orgId: {$in: orgs}});
+});
+
 Meteor.methods({
     'insertOrganization': function(name, desc, addr1, addr2, city, st, country, phone) {
         if (name == '') {
