@@ -2,9 +2,12 @@
 Meteor.publish('org', function() {
     var orgUsers = OrgUsers.find({userId:this.userId}, {orgId: 1, role: 1}).fetch();
     var orgs = [''];
+    /*console.log('userId: ', this.userId);
+    console.log('orgUsers: ', orgUsers);*/
     for (var org in orgUsers) {
         orgs.push(orgUsers[org].orgId);
     }
+    /*console.log("orgs array: ", orgs);*/
     return Org.find({_id: {$in: orgs}});
 });
 

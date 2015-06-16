@@ -1,0 +1,25 @@
+<template name="org">
+
+    <div class="row">
+        <div class="col-md-9 col-md-offset-3">
+            <a href="javascript:history.back()">&lt;-- Back</a>
+            <h3>{{myOrg.name}}</h3>
+            <p>{{myOrg.address1}}</p>
+            <p>{{myOrg.address2}}</p>
+            <p>{{myOrg.city}}</p>
+            <p>{{myOrg.state}}</p>
+            <p>Sunday: {{thisWeek.[0]}}</p>
+            <p>Monday: {{thisWeek.[1]}}</p>
+            <p>Tuesday: {{thisWeek.[2]}}</p>
+            <p>Wednesday: {{thisWeek.[3]}}</p>
+            <p>Thursday: {{thisWeek.[4]}}</p>
+            <p>Friday: {{thisWeek.[5]}}</p>
+            <p>Saturday: {{thisWeek.[6]}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6"><a href="#" id="prevweek">Previous week</a></div>
+        <div class="col-md-6"><a href="#" id="nextweek">Next week</a></div>
+    </div>
+
+</template>

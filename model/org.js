@@ -114,8 +114,9 @@ Org.before.insert(function(userId, doc) {
 
 Org.after.insert(function(userId, doc) {
     OrgUsers.insert({orgId: doc._id, userId: userId, role: 'admin'});
-    CoffeeAlerts.success("Organization ", this._id, " was created successfully");
-    Router.go('/organization/',this._id);
+    var successMessage = "Organization " + this._id + " was created successfully";
+    CoffeeAlerts.success(successMessage);
+    Router.go('/orgs');
 });
 
 Org.allow({

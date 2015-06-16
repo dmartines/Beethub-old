@@ -4,27 +4,33 @@
         <div class="col-sm-12">
             <h1>Organizations</h1>
             <br>
-            
-            {{#each org}}
-                {{#if editing}}
-                    <input name="name" type="text" class="form-control editing" value="{{name}}"><br>
-                    <p>{{address1}}</p>
-                    <p>{{address2}}</p>
-                    <p>{{city}}</p>
-                    <p>{{state}}</p>
-                {{else}}
-                    <h3 class="name">{{name}}</h3>
-                    <p>{{address1}}</p>
-                    <p>{{address2}}</p>
-                    <p>{{city}}</p>
-                    <p>{{state}}</p>
-                {{/if}}
-                <a href="/organization/{{_id}}">Go to organization</a><br>
-                
-            {{/each}}
-            <br><br>
-            <a href="/organization/new" id="btnAddCompany" >Add new organization</a>
+        </div>
+    </div>
+    <div class="row">
+        {{#each org}}
+        <div class="col-sm-3">
+            {{#if editing}}
+                <input name="name" type="text" class="form-control editing" value="{{name}}"><br>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+                <p>{{city}}</p>
+                <p>{{state}}</p>
+            {{else}}
+                <h3 class="name">{{name}}</h3><a href="/org/{{_id}}">Manage</a>
+                <p>{{address1}}</p>
+                <p>{{address2}}</p>
+                <p>{{city}}</p>
+                <p>{{state}}</p>
+            {{/if}}
+            <br>
 
+        </div>
+        {{/each}}
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <br><br>
+            <a href="/org/new" id="btnAddCompany" >Add new organization</a>
         </div>
     </div>
 
