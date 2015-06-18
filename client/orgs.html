@@ -1,37 +1,58 @@
 <template name="orgs">
 
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>Organizations</h1>
-            <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h1>Organizations</h1>
+                <br>
+            </div>
+        </div>
+        <div class="row">
+            {{#each myOrgs}}
+                <div class="col-sm-3">
+                    <div class="thumbnail">
+                        <h3 class="name">{{name}}</h3>
+                        <p>{{address1}}</p>
+                        <p>{{address2}}</p>
+                        <p>{{city}}</p>
+                        <p>{{state}}</p>
+                        <p>{{zip}}</p>
+                        <a href="/org/{{_id}}" class="btn btn-info">Manage</a>
+                        <br>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <br>
+                <div class="form-group">
+                    <label>Search organization</label>
+                    {{> esInput index="org" class="form-control" placeholder="Search by name..." }}
+                    <br><br>
+                    <table class="table table-hover table-bordered table-striped" style="border:none; ">
+                        <thead style="background-color: #95B083;">
+                            <tr>
+                                <th style="border:none; ">Name</th>
+                                <th style="border:none; ">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {{#esEach index="org"}}
+                            <tr>
+                                <td style="padding: 10px;border:none;">
+                                    <h2 style="margin-top: 0px;">{{name}}</h2>
+                                    <h4>{{shortDescription description}}</h4>
+                                    <p>Address: {{address1}}, {{address2}}, {{city}}, {{state}} {{zip}}</p>
+                                </td>
+                                <td style="padding: 10px;border:none;"><button class="btn btn-success" id="requestAccess">Request access</button></td>
+                            </tr>
+                        {{/esEach}}
+                        </tbody>
+                    </table>
+                </div>
+                <a href="/org/new" id="btnAddCompany" class="btn btn-warning">Add new organization</a>
+            </div>
         </div>
     </div>
-    <div class="row">
-        {{#each org}}
-        <div class="col-sm-3">
-            {{#if editing}}
-                <input name="name" type="text" class="form-control editing" value="{{name}}"><br>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
-                <p>{{city}}</p>
-                <p>{{state}}</p>
-            {{else}}
-                <h3 class="name">{{name}}</h3><a href="/org/{{_id}}">Manage</a>
-                <p>{{address1}}</p>
-                <p>{{address2}}</p>
-                <p>{{city}}</p>
-                <p>{{state}}</p>
-            {{/if}}
-            <br>
-
-        </div>
-        {{/each}}
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <br><br>
-            <a href="/org/new" id="btnAddCompany" >Add new organization</a>
-        </div>
-    </div>
-
 </template>

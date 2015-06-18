@@ -1,56 +1,54 @@
+process.env.MAIL_URL="smtp://xxxx@xxxx.com:xxxx@smtp.xxxx.com:465/";
+
 // general server-side code
 Meteor.publish('org', function() {
-    var orgUsers = OrgUsers.find({userId:this.userId}, {orgId: 1, role: 1}).fetch();
-    var orgs = [''];
-    /*console.log('userId: ', this.userId);
-    console.log('orgUsers: ', orgUsers);*/
-    for (var org in orgUsers) {
-        orgs.push(orgUsers[org].orgId);
-    }
-    /*console.log("orgs array: ", orgs);*/
-    return Org.find({_id: {$in: orgs}});
-});
-
-Meteor.publish('orgusers', function() {
-    return OrgUsers.find({userId:this.userId}); 
+    return Org.find();
 });
 
 Meteor.publish('adminTimesheets', function() {
-    var orgUsers = OrgUsers.find({userId:this.userId}, {orgId: 1, role: 1}).fetch();
+    /*var orgUsers = OrgUsers.find({userId:this.userId}, {orgId: 1, role: 1}).fetch();
     var orgs = [''];
     for (var org in orgUsers) {
         orgs.push(orgUsers[org].orgId);
     }
-    return Timesheet.find({orgId: {$in: orgs}});
+    return Timesheet.find({orgId: {$in: orgs}});*/
 });
 
 Meteor.methods({
-    'insertOrganization': function(name, desc, addr1, addr2, city, st, country, phone) {
-        if (name == '') {
-            Coffee.success("Missing name");
-            Router.go('newOrganization');
-        }
-        var orgId = Org.insert({
-            name: name,
-            description: desc,
-            address1: addr1,
-            address2: addr2,
-            city: city,
-            state: st,
-            country: country,
-            phone: phone,
-            createdBy: this.userId,
-            createdOn: new Date()
+    inviteUser: function (doc) {
+        check(doc, InviteSchema);
+
+        // Let other method calls from the same client start running,
+        // without waiting for the email sending to complete.
+        this.unblock();
+
+        SSR.compileTemplate('inviteUsers', Assets.getText('inviteUsers.html'));
+        doc.url = 'http://localhost:3000/sign-up'
+        var html = "<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>"
+            + SSR.render('inviteUsers', doc);
+
+        sendEmail({
+            to: doc.to,
+            subject: "You were invited by Beethub",
+            message: '',
+            html: html
         });
-        if (!orgId)
-            throw new Meteor.Error(401,'Organization could not be created');
-    
-        var userAssigned = OrgUsers.insert({
-            orgId: orgId,
-            userId: this.userId,
-            role: 'admin'
-        });
-        if (!userAssigned) 
-            throw new Meteor.Error(401,'User not assigned to organization. Please contact Administrator');
+
     }
 });
+
+function sendEmail (doc) {
+    // Let other method calls from the same client start running,
+    // without waiting for the email sending to complete.
+    if (!doc.subject)
+        doc.subject = "You got a message from Beethub";
+
+    Email.send({
+        to: doc.to,
+        from: 'dbmartines@gmail.com',
+        subject: doc.subject,
+        message: doc.message,
+        html: doc.html
+    });
+
+};

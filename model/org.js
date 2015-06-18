@@ -1,6 +1,8 @@
 // all client + server code goes here!
 Org = new Mongo.Collection('org');
 
+Org.initEasySearch(['name','description','city','state']);
+
 OrgSchema = new SimpleSchema({
     name: {
         type: String,
@@ -9,7 +11,11 @@ OrgSchema = new SimpleSchema({
     },
     description: {
         type: String,
-        label: "Description"
+        label: "Description",
+        max: 2000,
+        autoform: {
+            rows: 5
+        }
     },
     address1: {
         type: String,
@@ -93,6 +99,11 @@ OrgSchema = new SimpleSchema({
             ]
         }
     },
+    zip: {
+        type: String,
+        label: "Zip cde",
+        max: 9
+    },
     country: {
         type: String,
         label: "Country",
@@ -102,6 +113,16 @@ OrgSchema = new SimpleSchema({
         type: String,
         label: "Phone",
         optional: true
+    },
+    users: {
+        type: [Object],
+        label: 'Users'
+    },
+    "users.$.userId": {
+        type: String
+    },
+    "users.$.role": {
+        type: String
     }
 
 });
@@ -113,9 +134,10 @@ Org.before.insert(function(userId, doc) {
 });
 
 Org.after.insert(function(userId, doc) {
-    OrgUsers.insert({orgId: doc._id, userId: userId, role: 'admin'});
+    Org.update({_id:doc._id},{$set:{users:{userId: userId, role: 'admin'}}});
     var successMessage = "Organization " + this._id + " was created successfully";
-    CoffeeAlerts.success(successMessage);
+    $('#successMessage').text(successMessage);
+    $('#successAlert').slideDown();
     Router.go('/orgs');
 });
 

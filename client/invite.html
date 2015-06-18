@@ -1,0 +1,24 @@
+<template name="inviteUsers">
+
+    <div class="container" style="margin-top: 30px; ">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {{#autoForm schema=inviteUserSchema id="contactForm"}}
+                    <fieldset>
+                        <legend>Invite a user</legend>
+                        {{> afQuickField name="name"}}
+                        {{> afQuickField name="to"}}
+                        {{> afFieldInput name="message" defaultValue="Please join my organization at Beethub"}}
+                        <br>
+                        <div class="btn-group btn-group-lg">
+                            <button type="submit" id="btnInviteUser" class="btn btn-primary">Submit</button>
+                            <button type="cancel" id="btnCancelInvite" class="btn btn-default">Cancel</button>
+                            <button type="reset" class="btn btn-default">Reset</button>
+                        </div>
+                    </fieldset>
+                {{/autoForm}}
+            </div>
+        </div>
+    </div>
+
+</template>
