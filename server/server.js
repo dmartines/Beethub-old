@@ -45,7 +45,7 @@ function sendEmail (doc) {
 
     Email.send({
         to: doc.to,
-        from: 'dbmartines@gmail.com',
+        from: 'XXXX',
         subject: doc.subject,
         message: doc.message,
         html: doc.html
